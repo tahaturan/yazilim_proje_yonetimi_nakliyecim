@@ -4,11 +4,13 @@ class MyCard extends StatefulWidget {
   String title;
   String subTitle;
   Widget durumIcon;
+  bool soforDurum;
   MyCard(
       {Key? key,
       required this.title,
       required this.subTitle,
-      required this.durumIcon})
+      required this.durumIcon,
+      required this.soforDurum})
       : super(key: key);
 
   @override
@@ -31,7 +33,31 @@ class _MyCardState extends State<MyCard> {
           child: ListTile(
             title: Text(widget.title),
             subtitle: Text(widget.subTitle),
-            leading: const CircleAvatar(child: Icon(Icons.message_sharp)),
+            leading: CircleAvatar(
+              child: IconButton(
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: widget.soforDurum
+                          ? const Text(
+                              "Konusma Sayfasina Yonlendiriliyor...",
+                              style: TextStyle(color: Colors.blue),
+                            )
+                          : const Text(
+                              "Sofor Musait Degil",
+                              style: TextStyle(color: Colors.red),
+                            ),
+                      backgroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      duration: const Duration(seconds: 3),
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.message),
+              ),
+            ),
             trailing: widget.durumIcon,
             iconColor: Colors.teal,
           ),
