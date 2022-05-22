@@ -16,6 +16,7 @@ class TextFilled extends StatelessWidget {
           hintText: yazi,
           filled: true,
           fillColor: Colors.white,
+          suffixIcon: const Icon(Icons.perm_identity_outlined),
           icon: const Icon(
             Icons.arrow_circle_right_outlined,
             color: Colors.blue,
