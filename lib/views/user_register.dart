@@ -25,6 +25,10 @@ class _UserRegisterState extends State<UserRegister> {
           children: [
             TextFilled(yazi: "Ad", durum: false),
             TextFilled(yazi: "Soyad", durum: false),
+            TextFilled(yazi: "Kullanici Adi", durum: false),
+            TextFilled(yazi: "Sifre", durum: true),
+            TextFilled(yazi: "Sifre Tekrar", durum: true),
+            TextFilled(yazi: "e-posta", durum: false),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -118,7 +122,7 @@ class _UserRegisterState extends State<UserRegister> {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const MyApp(),
