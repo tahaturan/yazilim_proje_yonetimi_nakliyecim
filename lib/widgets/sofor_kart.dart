@@ -5,12 +5,14 @@ class MyCard extends StatefulWidget {
   String subTitle;
   Widget durumIcon;
   bool soforDurum;
+  int money;
   MyCard(
       {Key? key,
       required this.title,
       required this.subTitle,
       required this.durumIcon,
-      required this.soforDurum})
+      required this.soforDurum,
+      required this.money})
       : super(key: key);
 
   @override
@@ -60,6 +62,10 @@ class _MyCardState extends State<MyCard> {
             ),
             trailing: widget.durumIcon,
             iconColor: Colors.teal,
+            onLongPress: () {
+              _alertDialogIslemi(context, widget.title, widget.subTitle,
+                  widget.money, widget.soforDurum);
+            },
           ),
         ),
         Divider(
@@ -69,6 +75,76 @@ class _MyCardState extends State<MyCard> {
           endIndent: 60,
         )
       ],
+    );
+  }
+
+  void _alertDialogIslemi(BuildContext myContex, String isim, String durum,
+      int ucret, bool goster) {
+    showDialog(
+      context: myContex,
+      builder: (contex) {
+        return AlertDialog(
+          title: Row(
+            children: [
+              Text(isim),
+              const SizedBox(width: 5),
+              Icon(widget.soforDurum ? Icons.done_sharp : Icons.cancel),
+            ],
+          ),
+          content: SizedBox(
+            height: 75,
+            child: Column(
+              children: [
+                Text("Durum: $durum"),
+                Text("100Km Uceti: ${ucret.toString()}TL"),
+                const SizedBox(
+                  height: 10,
+                ),
+                Visibility(
+                  visible: goster,
+                  child: Expanded(
+                    child: TextField(
+                      decoration: InputDecoration(
+                        labelText: "Mesajiniz",
+                        icon: IconButton(
+                          onPressed: () {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text("Mesaj Gonderiliyor..."),
+                              ),
+                            );
+                          },
+                          icon: const Icon(Icons.message),
+                        ),
+                        border: const OutlineInputBorder(),
+                        suffixIcon: const Icon(Icons.drafts_outlined),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text(
+                "Kapat",
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text(
+                "Tamam",
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }
