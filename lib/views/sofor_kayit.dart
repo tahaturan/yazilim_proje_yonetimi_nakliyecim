@@ -1,0 +1,187 @@
+import 'package:flutter/material.dart';
+import 'package:yazilim_proje_yonetimi/main.dart';
+import 'package:yazilim_proje_yonetimi/widgets/text_filled.dart';
+
+class SoforKayit extends StatefulWidget {
+  const SoforKayit({Key? key}) : super(key: key);
+
+  @override
+  State<SoforKayit> createState() => _SoforKayitState();
+}
+
+class _SoforKayitState extends State<SoforKayit> {
+  int radioDeger = 0;
+  bool checkKontrol = false;
+  bool checkKontrolSigorta = false;
+  var tfDate = TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blue[300],
+        title: const Text("Kullanici Kaydi"),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            TextFilled(yazi: "Ad", durum: false),
+            TextFilled(yazi: "Soyad", durum: false),
+            TextFilled(yazi: "Kullanici Adi", durum: false),
+            TextFilled(yazi: "Sifre", durum: true),
+            TextFilled(yazi: "Sifre Tekrar", durum: true),
+            TextFilled(yazi: "e-posta", durum: false),
+            const Padding(
+              padding: EdgeInsets.only(bottom: 5, top: 5, right: 15),
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: "TC Kimlik Numarasi",
+                  icon: Icon(
+                    Icons.arrow_circle_right_outlined,
+                    color: Colors.blue,
+                  ),
+                  border: OutlineInputBorder(),
+                  contentPadding: EdgeInsets.all(10),
+                  suffixIcon: Icon(Icons.numbers),
+                ),
+                maxLength: 11,
+                keyboardType: TextInputType.number,
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(bottom: 5, top: 5, right: 15),
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: "Arac Plakasi",
+                  icon: Icon(
+                    Icons.arrow_circle_right_outlined,
+                    color: Colors.blue,
+                  ),
+                  border: OutlineInputBorder(),
+                  contentPadding: EdgeInsets.all(10),
+                  suffixIcon: Icon(Icons.car_repair_outlined),
+                ),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Radio(
+                  value: 1,
+                  groupValue: radioDeger,
+                  onChanged: (int? veri) {
+                    setState(() {
+                      radioDeger = veri!;
+                    });
+                  },
+                ),
+                Row(
+                  children: const [Icon(Icons.male), Text("Erkek")],
+                ),
+                Radio(
+                  value: 2,
+                  groupValue: radioDeger,
+                  onChanged: (int? veri) {
+                    setState(() {
+                      radioDeger = veri!;
+                    });
+                  },
+                ),
+                Row(
+                  children: const [Icon(Icons.female), Text("Kadin")],
+                )
+              ],
+            ),
+            const Padding(
+              padding: EdgeInsets.only(bottom: 5, top: 5, right: 15),
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: "Telefon Numarasi",
+                  icon: Icon(
+                    Icons.arrow_circle_right_outlined,
+                    color: Colors.blue,
+                  ),
+                  border: OutlineInputBorder(),
+                  contentPadding: EdgeInsets.all(10),
+                  label: Icon(Icons.phone),
+                  suffixIcon: Icon(Icons.phone),
+                ),
+                maxLength: 11,
+                keyboardType: TextInputType.number,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5, top: 5, right: 15),
+              child: TextField(
+                controller: tfDate,
+                decoration: const InputDecoration(
+                  hintText: "Dogum Tarihi",
+                  icon: Icon(
+                    Icons.arrow_circle_right_outlined,
+                    color: Colors.blue,
+                  ),
+                  border: OutlineInputBorder(),
+                  contentPadding: EdgeInsets.all(10),
+                  label: Icon(Icons.date_range_outlined),
+                  suffixIcon: Icon(Icons.date_range_rounded),
+                ),
+                keyboardType: TextInputType.datetime,
+                onTap: () {
+                  showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(1970),
+                    lastDate: DateTime(2025),
+                  ).then((secilenTarih) {
+                    setState(() {
+                      tfDate.text =
+                          "${secilenTarih!.day}/${secilenTarih.month}/${secilenTarih.year}";
+                    });
+                  });
+                },
+              ),
+            ),
+            CheckboxListTile(
+              value: checkKontrol,
+              onChanged: (bool? veri) {
+                setState(() {
+                  checkKontrol = veri!;
+                });
+              },
+              title: const Text(
+                "Kullanim Kosullarini ve sozlesmeyi Onayliyorum",
+                style: TextStyle(fontSize: 15),
+              ),
+              tileColor: Colors.cyan[200],
+            ),
+            const SizedBox(height: 5),
+            CheckboxListTile(
+              value: checkKontrolSigorta,
+              onChanged: (bool? veri) {
+                setState(() {
+                  checkKontrolSigorta = veri!;
+                });
+              },
+              title: const Text(
+                "Sigorta Yukumluluklerini Kabul Ediyorum",
+                style: TextStyle(fontSize: 15),
+              ),
+              tileColor: Colors.cyan[200],
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const MyApp(),
+                    ));
+              },
+              child: const Text(
+                "Kayit ol",
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

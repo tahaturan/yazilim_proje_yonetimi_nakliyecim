@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yazilim_proje_yonetimi/views/sofor_kayit.dart';
 import 'package:yazilim_proje_yonetimi/views/user_register.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -48,7 +49,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const UserRegister(),
+                          builder: (context) => const SoforKayit(),
                         ));
                   },
                   child: Row(
