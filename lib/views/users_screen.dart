@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yazilim_proje_yonetimi/views/mezun.dart';
 import 'package:yazilim_proje_yonetimi/widgets/sofor_kart.dart';
 
 class UserScreen extends StatefulWidget {
@@ -93,7 +94,14 @@ class _UserScreenState extends State<UserScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const Mezun(),
+            ),
+          );
+        },
         child: const Icon(Icons.arrow_forward_sharp),
       ),
     );
