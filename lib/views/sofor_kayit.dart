@@ -19,7 +19,7 @@ class _SoforKayitState extends State<SoforKayit> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue[300],
-        title: const Text("Kullanici Kaydi"),
+        title: const Text("Sofor Kaydi"),
       ),
       body: SingleChildScrollView(
         child: Column(
