@@ -9,11 +9,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Material App',
+      title: 'Yüki Nakliyat',
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Nakliyecim'),
+          title: const Text('Yüki'),
           backgroundColor: Colors.blue[300],
         ),
         body: const LoginScreen(),
