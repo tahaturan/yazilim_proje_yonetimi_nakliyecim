@@ -24,7 +24,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             FadeInImage.assetNetwork(
                 placeholder: "assets/images/loading-buffering.gif",
                 image:
-                    "https://ar-asnakliyat.com/wp-content/uploads/2021/02/istanbul-izmir-kamyonet-nakliye-360x180.jpg"),
+                    "https://www.enakliyat.com.tr/Eblog/img/kucuk-kamyonet-nakliye.png"),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
