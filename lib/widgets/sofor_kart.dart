@@ -3,14 +3,12 @@ import 'package:flutter/material.dart';
 class MyCard extends StatefulWidget {
   String title;
   String subTitle;
-  Widget durumIcon;
   bool soforDurum;
   int money;
   MyCard(
       {Key? key,
       required this.title,
       required this.subTitle,
-      required this.durumIcon,
       required this.soforDurum,
       required this.money})
       : super(key: key);
@@ -60,7 +58,9 @@ class _MyCardState extends State<MyCard> {
                 icon: const Icon(Icons.message),
               ),
             ),
-            trailing: widget.durumIcon,
+            trailing: widget.soforDurum
+                ? const Icon(Icons.done_all_outlined)
+                : const Icon(Icons.cancel),
             iconColor: Colors.teal,
             onLongPress: () {
               _alertDialogIslemi(context, widget.title, widget.subTitle,
